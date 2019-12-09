@@ -2,4 +2,5 @@
 
 iw phy phy0 interface add mon0 type monitor
 ifconfig mon0 up
-airodump-ng -w output --output-format csv mon0
+airmon-ng check kill > /dev/null
+timeout --foreground 2m airodump-ng -w WiFiDump --output-format csv mon0
